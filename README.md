@@ -1,82 +1,87 @@
-# Kubernetes Learning Project 🚀
 
-This repository is a personal sandbox designed to learn and experiment with **Kubernetes** using **Minikube**. It includes a basic full-stack web application and deployment configuration files to understand how Kubernetes works in a local development environment.
+# Toxic Text Classification with LSTM
 
-## 📁 Repository Structure
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-```
-.
-├── backend/              # Node.js backend server (likely with Express.js)
-├── frontend-reddit/      # Frontend client app (possibly built with React)
-├── kubernetes/           # Kubernetes manifests (Deployments, Services, etc.)
-└── .gitignore
-```
-
-## 🎯 Goals of the Project
-
-- Learn the basics of Kubernetes architecture (Pods, Deployments, Services, etc.)
-- Use **Minikube** to create a local Kubernetes cluster
-- Containerize both frontend and backend apps with Docker
-- Deploy the full-stack application on Kubernetes
-- Explore service communication, scaling, and health checks
-
-## 🛠️ Technologies Used
-
-- **Frontend**: React (assumed from `frontend-reddit`)
-- **Backend**: Node.js / Express.js (assumed from structure)
-- **Containerization**: Docker
-- **Kubernetes**: Minikube for local deployment
-
-## 🚀 Getting Started
-
-> Make sure you have Docker and Minikube installed on your system.
-
-1. **Start Minikube**:
-
-   ```bash
-   minikube start
-   ```
-
-2. **Build Docker images inside Minikube**:
-
-   ```bash
-   eval $(minikube docker-env)
-   docker build -t backend-image ./backend
-   docker build -t frontend-image ./frontend-reddit
-   ```
-
-3. **Apply Kubernetes manifests**:
-
-   ```bash
-   kubectl apply -f kubernetes/
-   ```
-
-4. **Access the services**:
-
-   ```bash
-   minikube service frontend-service
-   ```
-
-   > Replace `frontend-service` with your actual service name defined in the YAML file.
-
-## 📚 Learnings and Experiments
-
-- Kubernetes deployment workflows
-- Understanding `Deployment`, `Service`, and `Pod` lifecycle
-- Using NodePort and ClusterIP services
-- Connecting frontend to backend using Kubernetes DNS
-- Scaling and updating services with `kubectl`
-
-## 📦 Future Plans
-
-- Add Ingress support
-- Set up ConfigMaps and Secrets
-- Implement CI/CD pipeline for auto-deployment
-
-## 🙌 Acknowledgments
-
-Built for self-learning and experimentation. Inspired by the need to deeply understand how to deploy and manage containerized apps at scale.
+This project implements a Long Short-Term Memory (LSTM) model for classifying toxic comments into multiple categories, including `toxic`, `severe_toxic`, `obscene`, `threat`, `insult`, and `identity_hate`. The model is built using PyTorch and is trained on the Jigsaw Toxic Comment Classification Challenge dataset.
 
 ---
 
-> This project is **not intended for production use**. It is purely for educational purposes.
+## 📁 Project Structure
+
+```
+toxic_text_lstm/
+├── .gitattributes             # Git attributes for handling line endings and merge strategies
+├── requirements.txt           # Python dependencies for the project
+├── train.csv                  # Dataset for training the model (ensure this file is included)
+├── toxic_classifier.ipynb     # Jupyter Notebook for training and evaluating the model
+└── README.md                  # Project overview and setup instructions
+```
+
+---
+
+## 🔧 Setup
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Bikram-ghuku/toxic_text_lstm.git
+   cd toxic_text_lstm
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Download the dataset**
+
+   - Download `train.csv` from [Kaggle](https://www.kaggle.com/competitions/jigsaw-toxic-comment-classification-challenge/data)
+   - Place it in the project root directory
+
+---
+
+## 🧹 Preprocessing
+
+The preprocessing steps include:
+
+- Cleaning the text (removing punctuation, converting to lowercase, etc.)
+- Tokenizing the text using 216477 tokens
+- Encoding the sentences
+- Balancing the dataset using upsampling
+
+These steps are implemented in the `toxic_classifier.ipynb` notebook.
+
+---
+
+## 🏋️ Training
+
+To train the model:
+
+1. Open the `toxic_classifier.ipynb` notebook.
+2. Follow the instructions within the notebook to preprocess the data, define the model, and train it.
+
+The notebook provides a step-by-step guide for training the LSTM model.
+
+---
+
+## 🔍 Inference
+
+After training the model, you can use it to classify new comments. The inference code is also included in the `toxic_classifier.ipynb` notebook.
+
+---
+
+## 📊 Results
+
+- **F1 Score (micro):** 0.7121  
+- **Accuracy Score:** 0.9153
+
+
+---
+
+## 🙌 Acknowledgments
+
+- [Kaggle Jigsaw Toxic Comment Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)
+- PyTorch Team
