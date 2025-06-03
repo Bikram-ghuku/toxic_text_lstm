@@ -75,8 +75,8 @@ After training the model, you can use it to classify new comments. The inference
 
 ## 📊 Results
 
-- **F1 Score (micro):** 0.7121  
-- **Accuracy Score:** 0.9153
+- **F1 Score (micro):** 0.8178  
+- **Accuracy Score:** 0.9142
 
 
 ---
